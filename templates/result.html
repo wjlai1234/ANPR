@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row g-3">
+        <div class="col-12">
+            <h1 style="color:#212931;text-align: center">Result Images</h1>
+            <hr>
+        </div>
+
+        <div class="container mb-5">
+            <div class="row " uk-sortable>
+                {%for hist in hists%}
+                <div class="col-4  my-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="/{{hist}}" class="card-img-top" alt="{{hist}}">
+                        <div class="card-body">
+                            {% for row in range(events) %}
+                            {% if results[row][0] == hist %}
+                            <h5 class="card-title ms-3">   name: {{ results[row][0][8:] }}</h5>
+                             <h5 class="card-title ms-3">result: {{ results[row][1] }}</h5>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+
+    </div>
+
+    {% endblock %}
+</body>
+</html>

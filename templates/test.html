@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row g-2">
+
+        <div class="col-12">
+            <h1 style="color:#212931;text-align: center">License Plate Recognition On Images</h1>
+        </div>
+
+
+        <div class="col-12">
+            <div class="p-3 border bg-light">
+                <form action="/upload-image" method="POST" enctype="multipart/form-data">
+                    <label for="img" class="form-label"><b>Upload Card Plate Number Images</b></label>
+                    <hr>
+                    <input class="form-control form-control-lg" id="img" name="img" type="file">
+                    <button class="btn btn-primary mt-3 demo uk-button uk-button-default" type="submit"
+                            onclick="UIkit.notification({message: 'Please Wait for a while...'})">Upload
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-6 mt-5">
+            <h4 id="original">Original Photo</h4>
+
+            <img src="{{ url_for('send_uploaded_file', filename=uploaded_image) }}" class="img-fluid" alt="img_origin">
+        </div>
+
+        <div class="col-6 mt-5">
+            <h4 id="result">Result: {{ result }}</h4>
+            <img src="{{ url_for('send_result_file', filename=results_image) }}" class="img-fluid" alt="img_with_box">
+        </div>
+        <div class="col-12">
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
